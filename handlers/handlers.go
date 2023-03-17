@@ -54,8 +54,6 @@ func getIdx(s string) int {
 }
 
 func ShowRouteHandler(c *gin.Context) {
-	fmt.Println(mincost)
-
 	inRoute := make(map[string]bool)
 	for _, i := range route {
 		inRoute[names[i]] = true
