@@ -1,0 +1,14 @@
+input#\#cell {
+    width: 100px;
+    box-sizing: border-box;
+    border: 1px #ccc solid;
+    border-spacing: 0;
+}
+
+div#\#inp {
+    height: 50px;
+    /* width: 100px; */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}

@@ -1,0 +1,43 @@
+{{ define "index.tmpl"}}
+
+{{ template "header.tmpl" }}
+
+<div>
+    <form method="POST" action="/getroute">
+        <div id="#inp">
+            <input name="from" type="text" placeholder="From" id="#cell">
+            <input name="to" type="text" placeholder="To" id="#cell">
+        </div>
+        <p> <button type="submit"> Find Route </button> </p>
+    </form>
+</div>
+
+<div>
+    <svg viewBox="0 0 1750 1800">
+        {{ range $i, $e := .lines }}
+            <line stroke={{ $e.Color }} stroke-width="8" x1={{ $e.X1 }} x2={{ $e.X2 }} y1={{ $e.Y1 }} y2={{ $e.Y2 }} stroke-linecap="butt"></line>
+        {{ end }}
+
+        {{ range $i, $row := .stations }}
+            <circle cx={{ $row.X }} cy={{ $row.Y }} r="8" fill="white"></circle>
+            <circle cx={{ $row.X }} cy={{ $row.Y }} r="5" fill={{ $row.Line }}></circle>
+        {{ end }}
+
+        {{ range $i, $lable := .lables }}
+            <text x={{ $lable.X }} y={{ $lable.Y }} font-size="15" stroke="#ffffffe6" text-anchor="end" opacity="unset" font-weight="normal">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.35em" x={{ $lable.X }}> 
+                    {{ $lable.Name }}
+                </tspan>
+            </text>
+            <text x={{ $lable.X }} y={{ $lable.Y }} font-size="15" text-anchor="end" opacity="unset" font-weight="normal">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.35em" x={{ $lable.X }}> 
+                    {{ $lable.Name }}
+                </tspan>
+            </text>
+        {{ end }}
+    </svg>
+</div>
+
+{{ template "footer.tmpl" }}
+
+{{ end }}

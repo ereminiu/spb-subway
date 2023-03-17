@@ -1,0 +1,60 @@
+{{define "route.tmpl" }}
+
+{{ template "header.tmpl" }}
+
+<div>
+    <text> Время Маршрута: {{.mincost}} минут </text>
+</div>
+
+<div>
+    <svg viewBox="0 0 1750 1800">
+        {{ range $i, $e := .tlines }}
+            <line stroke={{ $e.Color }} stroke-width="8" x1={{ $e.X1 }} x2={{ $e.X2 }} y1={{ $e.Y1 }} y2={{ $e.Y2 }} stroke-linecap="butt" stroke-opacity="0.2"></line>
+        {{ end }}
+
+        {{ range $i, $row := .tstations }}
+            <circle cx={{ $row.X }} cy={{ $row.Y }} r="8" fill="white"></circle>
+            <circle cx={{ $row.X }} cy={{ $row.Y }} r="5" fill={{ $row.Line }} fill-opacity="0.2"></circle>
+        {{ end }}
+
+        {{ range $i, $e := .nlines }}
+            <line stroke={{ $e.Color }} stroke-width="8" x1={{ $e.X1 }} x2={{ $e.X2 }} y1={{ $e.Y1 }} y2={{ $e.Y2 }} stroke-linecap="butt"></line>
+        {{ end }}
+
+        {{ range $i, $row := .nstations }}
+            <circle cx={{ $row.X }} cy={{ $row.Y }} r="8" fill="white"></circle>
+            <circle cx={{ $row.X }} cy={{ $row.Y }} r="5" fill={{ $row.Line }}></circle>
+        {{ end }}
+
+        {{ range $i, $lable := .tlables }}
+            <text x={{ $lable.X }} y={{ $lable.Y }} font-size="15" stroke="#ffffffe6" text-anchor="end" font-weight="normal">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.35em" x={{ $lable.X }}> 
+                    {{ $lable.Name }}
+                </tspan>
+            </text>
+            <text x={{ $lable.X }} y={{ $lable.Y }} font-size="15" text-anchor="end" font-weight="normal" fill-opacity="0.2">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.35em" x={{ $lable.X }}> 
+                    {{ $lable.Name }}
+                </tspan>
+            </text>
+        {{ end }}
+
+        {{ range $i, $lable := .nlables }}
+            <text x={{ $lable.X }} y={{ $lable.Y }} font-size="15" stroke="#ffffffe6" text-anchor="end" font-weight="normal">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.35em" x={{ $lable.X }}> 
+                    {{ $lable.Name }}
+                </tspan>
+            </text>
+            <text x={{ $lable.X }} y={{ $lable.Y }} font-size="15" text-anchor="end" font-weight="normal">
+                <tspan dominant-baseline="inherit" text-anchor="inherit" dy="0.35em" x={{ $lable.X }}> 
+                    {{ $lable.Name }}
+                </tspan>
+            </text>
+        {{ end }}
+    </svg>
+</div>
+
+
+{{ template "footer.tmpl" }}
+
+{{ end }}
