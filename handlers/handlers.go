@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"sort"
@@ -102,9 +101,6 @@ func ShowRouteHandler(c *gin.Context) {
 		}
 	}
 
-	fmt.Println(normalLables)
-	fmt.Println(transLables)
-
 	c.HTML(http.StatusOK, "route.tmpl", gin.H{
 		"mincost":   mincost,
 		"nstations": normalStations,
@@ -118,7 +114,7 @@ func ShowRouteHandler(c *gin.Context) {
 
 func HomeHandler(c *gin.Context) {
 	// получаем станции из json
-	data, err := ioutil.ReadFile("stations.json")
+	data, err := ioutil.ReadFile("assets/stations.json")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -127,7 +123,6 @@ func HomeHandler(c *gin.Context) {
 	if err != nil {
 		panic(err.Error())
 	}
-	fmt.Println(stations)
 
 	// строим граф из станций
 	lines := make([]Line, 0)
@@ -145,7 +140,6 @@ func HomeHandler(c *gin.Context) {
 	for i, name := range names {
 		idx[name] = i + 1
 	}
-	fmt.Println(idx)
 
 	// init gr
 	n = len(names)
