@@ -15,5 +15,5 @@ func main() {
 	r.GET("/showroute", handlers.ShowRouteHandler)
 	r.POST("/getroute", handlers.FindRouteHandler)
 
-	r.Run(":8080")
+	r.Run(":1024")
 }
