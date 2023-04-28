@@ -63,3 +63,7 @@ func (h *Heap[T]) Push(x T) {
 
 	h.shiftUp(h.n - 1)
 }
+
+func (h *Heap[T]) Empty() bool {
+	return h.n == 0
+}
