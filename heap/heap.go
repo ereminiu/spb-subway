@@ -17,11 +17,10 @@ func NewHeap[T any](less, equal func(a, b T) bool) *Heap[T] {
 }
 
 func (h *Heap[T]) shiftDown(i int) {
-	n := len(h.data)
-	for 2*i+1 < n {
+	for 2*i+1 < h.n {
 		left, right := 2*i+1, 2*i+2
 		k := left
-		if right < n && h.less(h.data[right], h.data[k]) {
+		if right < h.n && h.less(h.data[right], h.data[k]) {
 			k = right
 		}
 
@@ -47,7 +46,7 @@ func (h *Heap[T]) Top() T {
 
 func (h *Heap[T]) Pop() T {
 	mn := h.data[0]
-	h.data[0] = h.data[len(h.data)-1]
+	h.data[0] = h.data[h.n-1]
 	h.n--
 	h.shiftDown(0)
 	return mn
