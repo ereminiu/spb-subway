@@ -30,7 +30,7 @@ func Dijkstra(gr [][]*Edge, u, v int) (int, []int) {
 	dist[u] = 0
 	par[u] = -1
 
-	h := heap.NewHeap(func(a, b Item) bool { return a.d < b.d }, func(a, b Item) bool { return a.d <= b.d })
+	h := heap.NewHeap(func(a, b Item) bool { return a.d < b.d }, func(a, b Item) bool { return a.d == b.d })
 	h.Push(Item{x: u, d: dist[u]})
 
 	for !h.Empty() {
